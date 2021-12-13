@@ -36,8 +36,8 @@ class Banco:
             return 'O Banco não tem reservas suficientes para realizar o empréstimo.'
 
 
-objetoBanco = Banco()
-print(objetoBanco.pode_fazer_emprestimo(45001))
+# objetoBanco = Banco()
+# print(objetoBanco.pode_fazer_emprestimo(45001))
 
 
 class Conta(Banco):
@@ -69,11 +69,11 @@ class Conta(Banco):
         return f'Saldo atual: R${self.__saldo:,.2f}'
 
 
-objetoConta = Conta()
-# print(objetoConta.deposito(12345, 6000))
-print()
-print(objetoConta.saque(12345, 1500))
-print()
-print(objetoConta.saldo())
-print()
-print(objetoConta.pode_receber_emprestimo(20000))
+# objetoConta = Conta()
+# # print(objetoConta.deposito(12345, 6000))
+# print()
+# print(objetoConta.saque(12345, 1500))
+# print()
+# print(objetoConta.saldo())
+# print()
+# print(objetoConta.pode_receber_emprestimo(20000))

@@ -77,7 +77,6 @@
 
 """--------------------------------------------------------------------"""
 
-
 # Variáveis de Classe e de Instância:
 
 # class Gato:
@@ -268,32 +267,191 @@
 # print(Cachorro.nome, Cachorro.cor)
 
 
-class Conta(object):
-    # total = 1000
-    __total = 1000  # Encapsulamento (atributo privado)
-    reserva = 0.1
-    
+# class Conta(object):
+#     # total = 1000
+#     __total = 1000  # Encapsulamento (atributo privado)
+#     reserva = 0.1
+#
+#     def __init__(self, id_conta, saldo):
+#         self.__id_conta = id_conta  # Encapsulamento (atributo privado)
+#         self.saldo = saldo
+#
+#     def deposito(self, valor):
+#         self.saldo += valor
+#         Conta.__total += self.saldo
+#
+#     def saque(self, valor):
+#         if self.saldo >= valor:
+#             self.saldo -= valor
+#             Conta.__total -= valor
+#         Conta.__imprimeReserva()
+#
+#     def __imprimeReserva():  # Método privado
+#         print(Conta.__total * Conta.reserva)
+#
+#
+# objetoNubank = Conta(122, 7500)
+# objetoNubank.deposito(2500)
+# objetoNubank.saque(4000)
+# print(objetoNubank.saldo)
+
+# Conta.__imprimeReserva()  # Métodos e atributos privados ficam inacessíveis fora da classe.
+
+"""--------------------------------------------------------------------"""
+# Métodos e Atributos Especiais:
+
+
+# class Conta:
+#     """
+#     Classe do tipo conta, representa uma conta num banco qualquer.
+#     """
+#     def __init__(self, id_conta, saldo):
+#         """
+#         Contrutor da classe conta.
+#         """
+#         self.ID = id_conta
+#         self.saldo = saldo
+#
+#     def __str__(self):  # Método que converte um objeto numa string.
+#         """
+#         Devolve uma string representando a conta.
+#         """
+#         return f'ID: {self.ID}\nSaldo: R${self.saldo}'
+#
+#     def __add__(self, other):  # Método que faz a soma entre valores de objetos.
+#         """
+#         Permite somar uma conta a outra.
+#         """
+#         # __sub__(), __divmod__(), __mul__(): --> Métodos que também fazem operações entre objetos.
+#         self.saldo += other.saldo
+#
+#     def __call__(self, x):  # torna um objeto "chamável".
+#         return x
+
+
+# ObjetoBradesco = Conta(123, 5000)
+# print(callable(ObjetoBradesco))
+# print(ObjetoBradesco('teste de objeto chamável'))
+# ObjetoItau = Conta(123, 7800)
+# ObjetoSantander = Conta(123, 1500)
+# # print(str(ObjetoBradesco))
+# ObjetoBradesco + ObjetoItau
+# print(ObjetoBradesco.saldo)
+
+
+# class Pai:
+#     ...
+#
+#
+# class Filha(Pai):
+#     ...
+#
+#
+# class Neta(Filha):
+#     ...
+#
+#
+# print(issubclass(Pai, Filha))  # Mostra se uma classe é subclasse da outra.
+# print(issubclass(Filha, Pai))
+# print(issubclass(Neta, Pai))
+# print(Filha.__bases__)  # Mostra a superclasse direta em que foi "herdada".
+# print(callable(Pai))  # Mostra se um determinado item é chamável. -> retorna True
+# print(callable(10))  # retorna False
+
+"""--------------------------------------------------------------------"""
+# Comparações e Extendendo objetos do Python:
+
+
+class Conta:
     def __init__(self, id_conta, saldo):
-        self.__id_conta = id_conta  # Encapsulamento (atributo privado)
+        self.ID = id_conta
         self.saldo = saldo
-        
+    
     def deposito(self, valor):
         self.saldo += valor
-        Conta.__total += self.saldo
         
     def saque(self, valor):
         if self.saldo >= valor:
             self.saldo -= valor
-            Conta.__total -= valor
-        Conta.__imprimeReserva()
+            
+    def __le__(self, other):
+        if self.ID <= other.ID:
+            return True
+        else:
+            return False
+    
+    def __eq__(self, other):
+        # return self.ID == other.ID
+        if self.ID == other.ID:
+            return True
+        else:
+            return False
         
-    def __imprimeReserva():  # Método privado
-        print(Conta.__total * Conta.reserva)
-            
-            
-objetoNubank = Conta(122, 7500)
-objetoNubank.deposito(2500)
-objetoNubank.saque(4000)
-print(objetoNubank.saldo)
+    def __ge__(self, other):
+        if self.ID >= other.ID:
+            return True
+        else:
+            return False
+    
+    def __lt__(self, other):
+        if self.ID < other.ID:
+            return True
+        else:
+            return False
+        
+    def __gt__(self, other):
+        if self.ID > other.ID:
+            return True
+        else:
+            return False
+    
+    def __ne__(self, other):
+        if self.ID != other.ID:
+            return True
+        else:
+            return False
 
-# Conta.__imprimeReserva()  # Métodos e atributos privados ficam inacessíveis fora da classe.
+
+class Contas(list):
+    """Classe para ordenar as contas pelo ID em ordem crescente"""
+    def sorteia(self):
+        copia = self.copy()
+        tamanho = len(self)
+        self.clear()
+        while len(self) < tamanho:
+            min_id = copia[0]
+            for conta in copia:
+                if conta.ID < min_id.ID:
+                    min_id = conta
+            self.append(min_id)
+            copia.remove(min_id)
+        
+
+class Banco:
+    def __init__(self):
+        self.contas = Contas()
+
+
+objetoBanco = Banco()
+itau = Conta(123, 4000)
+bradesco = Conta(456, 5000)
+santander = Conta(789, 6000)
+objetoBanco.contas.append(itau)
+objetoBanco.contas.append(santander)
+objetoBanco.contas.append(bradesco)
+objetoBanco.contas.sorteia()
+print(objetoBanco.contas[0].ID)
+
+# print(itau == bradesco)
+# itau2 = Conta(123, 4000)
+# print(itau == itau2)
+# itau3 = itau
+# print(itau == itau3)
+
+# Métodos de comparações:
+# __le__ --> x <= y
+# __eq__ --> x == y
+# __ge__ --> x >= y
+# __lt__ --> x < y
+# __gt__ --> x > y
+# __ne__ --> x != y
