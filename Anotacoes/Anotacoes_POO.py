@@ -359,88 +359,88 @@
 # print(callable(10))  # retorna False
 
 """--------------------------------------------------------------------"""
-# Comparações e Extendendo objetos do Python:
+# Comparações e Estendendo objetos do Python:
 
 
-class Conta:
-    def __init__(self, id_conta, saldo):
-        self.ID = id_conta
-        self.saldo = saldo
-    
-    def deposito(self, valor):
-        self.saldo += valor
-        
-    def saque(self, valor):
-        if self.saldo >= valor:
-            self.saldo -= valor
-            
-    def __le__(self, other):
-        if self.ID <= other.ID:
-            return True
-        else:
-            return False
-    
-    def __eq__(self, other):
-        # return self.ID == other.ID
-        if self.ID == other.ID:
-            return True
-        else:
-            return False
-        
-    def __ge__(self, other):
-        if self.ID >= other.ID:
-            return True
-        else:
-            return False
-    
-    def __lt__(self, other):
-        if self.ID < other.ID:
-            return True
-        else:
-            return False
-        
-    def __gt__(self, other):
-        if self.ID > other.ID:
-            return True
-        else:
-            return False
-    
-    def __ne__(self, other):
-        if self.ID != other.ID:
-            return True
-        else:
-            return False
-
-
-class Contas(list):
-    """Classe para ordenar as contas pelo ID em ordem crescente"""
-    def sorteia(self):
-        copia = self.copy()
-        tamanho = len(self)
-        self.clear()
-        while len(self) < tamanho:
-            min_id = copia[0]
-            for conta in copia:
-                if conta.ID < min_id.ID:
-                    min_id = conta
-            self.append(min_id)
-            copia.remove(min_id)
-        
-
-class Banco:
-    def __init__(self):
-        self.contas = Contas()
-
-
-objetoBanco = Banco()
-itau = Conta(123, 4000)
-bradesco = Conta(456, 5000)
-santander = Conta(789, 6000)
-objetoBanco.contas.append(itau)
-objetoBanco.contas.append(santander)
-objetoBanco.contas.append(bradesco)
-objetoBanco.contas.sorteia()
-print(objetoBanco.contas[0].ID)
+# class Conta:
+#     def __init__(self, id_conta, saldo):
+#         self.ID = id_conta
+#         self.saldo = saldo
+#
+#     def deposito(self, valor):
+#         self.saldo += valor
+#
+#     def saque(self, valor):
+#         if self.saldo >= valor:
+#             self.saldo -= valor
+#
+#     def __le__(self, other):
+#         if self.ID <= other.ID:
+#             return True
+#         else:
+#             return False
+#
+#     def __eq__(self, other):
+#         # return self.ID == other.ID
+#         if self.ID == other.ID:
+#             return True
+#         else:
+#             return False
+#
+#     def __ge__(self, other):
+#         if self.ID >= other.ID:
+#             return True
+#         else:
+#             return False
+#
+#     def __lt__(self, other):
+#         if self.ID < other.ID:
+#             return True
+#         else:
+#             return False
+#
+#     def __gt__(self, other):
+#         if self.ID > other.ID:
+#             return True
+#         else:
+#             return False
+#
+#     def __ne__(self, other):
+#         if self.ID != other.ID:
+#             return True
+#         else:
+#             return False
+#
+#
+# class Contas(list):
+#     """Classe para ordenar as contas pelo ID em ordem crescente"""
+#     def sorteia(self):
+#         copia = self.copy()
+#         tamanho = len(self)
+#         self.clear()
+#         while len(self) < tamanho:
+#             min_id = copia[0]
+#             for conta in copia:
+#                 if conta.ID < min_id.ID:
+#                     min_id = conta
+#             self.append(min_id)
+#             copia.remove(min_id)
+#
+#
+# class Banco:
+#     def __init__(self):
+#         self.contas = Contas()
+#
+#
+# objetoBanco = Banco()
+# itau = Conta(123, 4000)
+# bradesco = Conta(456, 5000)
+# santander = Conta(789, 6000)
+# objetoBanco.contas.append(itau)
+# objetoBanco.contas.append(santander)
+# objetoBanco.contas.append(bradesco)
+# objetoBanco.contas.sorteia()
+# print(objetoBanco.contas[0].ID)
 
 # print(itau == bradesco)
 # itau2 = Conta(123, 4000)
@@ -455,3 +455,86 @@ print(objetoBanco.contas[0].ID)
 # __lt__ --> x < y
 # __gt__ --> x > y
 # __ne__ --> x != y
+
+"""--------------------------------------------------------------------"""
+
+"""--------------------------------------------------------------------"""
+# Herança Multipla:
+
+# print("A sintaxe de herança múltipla em python é simples.")
+#
+#
+# class Calculadora:
+#     def calcula(self, expressao):
+#         self.valor = eval(expressao)
+#
+#
+# class Falador:
+#     def fala(self):
+#         print('Ei, meu valor é', self.valor)
+#
+#
+# class CalculadoraFalante(Calculadora, Falador):
+#     pass
+#
+#
+# cf = CalculadoraFalante()
+# cf.calcula('1+2*3')
+# cf.fala()
+#
+# input()
+#
+# print("E se eu quiser usar um método da superclasse?")
+# print("Será que eu posso usar o super??")
+#
+#
+# class Primeira(object):
+#     def __init__(self):
+#         self.p1 = 1
+#         print("primeira")
+#
+#
+# class Segunda(object):
+#     def __init__(self):
+#         self.p2 = 2
+#         print("segunda")
+#
+#
+# class Terceira(Primeira, Segunda):
+#     def __init__(self):
+#         super(Terceira, self).__init__()
+#         try:
+#             print("Acabou!", self.p1, self.p2)
+#         except Exception as E:
+#             print(E)
+#
+#
+# t = Terceira()
+#
+# input()
+#
+# print("Corrigindo...")
+#
+#
+# class Primeira(object):
+#     def __init__(self):
+#         self.p1 = 1
+#         print("primeira")
+#
+#
+# class Segunda(object):
+#     def __init__(self):
+#         self.p2 = 2
+#         print("segunda")
+#
+#
+# class Terceira(Primeira, Segunda):
+#     def __init__(self):
+#         Primeira.__init__(self)
+#         Segunda.__init__(self)
+#         print("Acabou!", self.p1, self.p2)
+#
+#
+# t = Terceira()
+#
+# input()
