@@ -18,3 +18,21 @@
 # g1.tipo_animal = 'Mascote'
 # print(g1.tipo_animal)
 # print(g2.tipo_animal)
+
+
+class A:
+    vc = 123
+    
+    def __init__(self):
+        # vc = 456
+        ...
+
+
+a1 = A()
+a2 = A()
+
+A.vc = 'Alterado'
+
+print(a1.vc)
+print(a2.vc)
+print(A.vc)

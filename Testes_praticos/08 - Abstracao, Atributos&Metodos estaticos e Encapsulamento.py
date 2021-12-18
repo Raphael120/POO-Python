@@ -25,6 +25,9 @@
 # print(Cachorro.nome, Cachorro.cor)
 
 
+"""__________________________________________________________________________________________________________________"""
+# Encapsulamento:
+
 # class Conta(object):
 #     # total = 1000
 #     __total = 1000  # Encapsulamento (atributo privado)
@@ -54,3 +57,6 @@
 # print(objetoNubank.saldo)
 
 # Conta.__imprimeReserva()  # Métodos e atributos privados ficam inacessíveis fora da classe.
+
+
+# Mais exemplos de Encapsulamento:
