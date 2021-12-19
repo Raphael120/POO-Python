@@ -39,3 +39,58 @@
 # print(raphael.cao)
 # print(raphael.cao.cor)  # -> Com a associação, podem ser acessados métodos e atributos de ambas as classes.
 # raphael.treinar()
+
+
+"""__________________________________________________________________________________________________________________"""
+# Mais exemplos de Associações:
+
+
+class Escritor:
+    def __init__(self, nome):
+        self.__nome = nome
+        self.__ferramenta = None
+        
+    @property  # Getter para nome
+    def nome(self):
+        return self.__nome
+    
+    @property  # Getter para ferramenta
+    def ferramenta(self):
+        return self.__ferramenta
+    
+    @ferramenta.setter  # Setter para ferramenta
+    def ferramenta(self, ferramenta):
+        self.__ferramenta = ferramenta
+
+
+class Caneta:
+    def __init__(self, marca):
+        self.__marca = marca
+    
+    @property  # Getter para marca
+    def marca(self):
+        return self.__marca
+    
+    @staticmethod
+    def escrever():
+        print('Caneta está escrevendo...')
+    
+    
+class MaquinaDeEscrever:
+    @staticmethod
+    def escrever():
+        print('Máquina está escrevendo...')
+
+
+objetoEscritor = Escritor('José')
+objetoCaneta = Caneta('Bic')
+objetoMaquina = MaquinaDeEscrever()
+
+# print(objetoEscritor.nome)
+# print(objetoCaneta.marca)
+# objetoMaquina.escrever()
+
+# --> O objeto/classe Escritor está recebendo todos os parâmetros do objeto/classe Máquina ou Caneta:
+objetoEscritor.ferramenta = objetoMaquina
+# objetoEscritor.ferramenta = objetoCaneta
+objetoEscritor.ferramenta.escrever()
